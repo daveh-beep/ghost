@@ -1,5 +1,22 @@
 # ghost-drift
 
+## 0.2.0
+
+### Minor Changes
+
+- [#46](https://github.com/block/ghost/pull/46) [`a96e335`](https://github.com/block/ghost/commit/a96e3352545ebc4e33c2e575dc45abd624ade351) Thanks [@nahiyankhan](https://github.com/nahiyankhan)! - Rename `fleet` mode to `composite` across the library and CLI. The N≥3 compare output now reads "Composite Fingerprint: N members" — the aggregate view is a fingerprint of fingerprints.
+
+  **BREAKING** (safe to bump minor while on 0.x, but pinning consumers should adjust):
+
+  - Library exports renamed: `compareFleet` → `compareComposite`; `formatFleetComparison` / `formatFleetComparisonJSON` → `formatCompositeComparison` / `formatCompositeComparisonJSON`.
+  - Type exports renamed: `FleetComparison` / `FleetMember` / `FleetPair` / `FleetCluster` / `FleetClusterOptions` → `Composite*` equivalents.
+  - `compare()` result discriminator: `result.mode === "fleet"` is now `"composite"`, and `result.fleet` is now `result.composite`.
+  - CLI header: `Fleet Overview: N projects` → `Composite Fingerprint: N members`.
+
+  JSON output shape (member count, pairwise, spread, clusters) is unchanged.
+
+- [#48](https://github.com/block/ghost/pull/48) [`a822e7c`](https://github.com/block/ghost/commit/a822e7cecae39801c53de03f836ae5e2f29b1470) Thanks [@nahiyankhan](https://github.com/nahiyankhan)! - Role palette fields accept `{palette.dominant.<role>}` and `{palette.semantic.<role>}` references, so renames in the palette cascade into every role that cites them. `ghost-drift lint` flags unresolved references as `broken-role-reference`.
+
 ## 0.1.1
 
 ### Patch Changes
